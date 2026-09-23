@@ -1,5 +1,38 @@
-import { Stack } from "expo-router";
+import { CreateUserButton } from "@/components/CreateUserButton";
+import { Stack, useRouter } from "expo-router";
 
 export default function RootLayout() {
-  return <Stack />;
+  const router = useRouter();
+
+  return <Stack
+    screenOptions={{
+      
+    }}
+  >
+    <Stack.Screen
+      name="index"
+      options = {{
+        title: "CheckPoint",
+        headerRight: () => <CreateUserButton />,
+      }}
+    />
+    <Stack.Screen 
+      name="createuserpage"
+      options = {{
+        title: "Create user"
+      }}
+    />
+    <Stack.Screen 
+      name="selectuser"
+      options = {{
+        title: "Select user"
+      }}
+    />
+    <Stack.Screen 
+      name="userpage"
+      options = {{
+        title: "User page"
+      }}
+    />
+  </Stack>;
 }

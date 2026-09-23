@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from "react-native";
 export default function Index() {
   return (
     <View style={styles.container}>
-      <GameList></GameList>
+        <GameList /> 
     </View>
   );
 }

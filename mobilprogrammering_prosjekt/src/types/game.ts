@@ -1,5 +1,5 @@
 export type Game = {
-  id: string,
+  readonly id: string,
   title: string,
   boxArtImageURL: string,
   genres: string[],

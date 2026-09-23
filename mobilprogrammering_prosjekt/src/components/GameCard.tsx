@@ -9,9 +9,9 @@ export function GameCard({ game }: { game: Game }) {
     <View style={styles.game}>
       <Image style={{ width: 300, height: 300 }} source={{ uri: boxArtImageURL }} />
       <View style={styles.gameInfo}>
-        <Text><Text style={styles.infoText}>Title: </Text>{title}</Text>
-        <Text><Text style={styles.infoText}>Genres: </Text>{genres.join(", ")}</Text>
-        <Text><Text style={styles.infoText}>Release Date: </Text>{releaseDate.toLocaleDateString()}</Text>
+        <Text style={styles.gameInfoText}><Text style={styles.infoText}>Title: </Text>{title}</Text>
+        <Text style={styles.gameInfoText}><Text style={styles.infoText}>Genres: </Text>{genres.join(", ")}</Text>
+        <Text style={styles.gameInfoText}><Text style={styles.infoText}>Release Date: </Text>{releaseDate.toDateString()}</Text>
       </View>
     </View>
   )
@@ -31,5 +31,9 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontWeight: "bold",
+    fontSize: 20,
+  },
+  gameInfoText: {
+    fontSize: 20,
   }
 })
