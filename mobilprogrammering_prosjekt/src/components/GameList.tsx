@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, ScrollView, StyleSheet } from "react-native";
-import { games } from "@/data/games";
+import { GAMES } from "@/data/games";
 import { GameCard } from "./GameCard";
 
 export function GameList() {
@@ -30,10 +30,9 @@ export function GameList() {
         const response = await fetch(`${baseUrl}${resource}`, {
           method: "POST",
           headers: {
-            "Accept": "application/json",
-            "Content-Type": "text/plain",
             "Client-ID": clientId,
             "Authorization": `Bearer ${getAPIAccessToken(process.env.CLIENT_ID, process.env.CLIENT_SECRET)}`,
+            "Content-Type": "text/plain",
           },
           body: query
         });
@@ -47,6 +46,7 @@ export function GameList() {
         console.log(err);
       }
       finally {
+        console.log(getAPIAccessToken(process.env.CLIENT_ID, process.env.CLIENT_SECRET));
         console.log(process.env.EXPO_PUBLIC_BASE_URL);
         console.log(process.env.CLIENT_ID);
         console.log(process.env.AUTHORIZATION_ACCESS_TOKEN);
@@ -63,7 +63,7 @@ export function GameList() {
   */
   return (
     <ScrollView style={styles.gameList}>
-      {games.map((game) => <GameCard key={game.id} game={game} />)}
+      {GAMES.map((game) => <GameCard key={game.id} game={game} />)}
     </ScrollView>
   )
 }

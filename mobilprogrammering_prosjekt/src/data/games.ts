@@ -1,6 +1,6 @@
 import { Game } from "@/types/game";
 
-export const games: Game[] = [
+export const GAMES: Game[] = [
   {
     id: "1",
     title: "Game 1",
