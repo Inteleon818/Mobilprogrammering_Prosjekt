@@ -17,21 +17,27 @@ export default function RootLayout() {
       }}
     />
     <Stack.Screen 
+      name="userpage"
+      options = {{
+        title: "User page",
+      }}
+    />
+    <Stack.Screen 
       name="createuserpage"
       options = {{
         title: "Create user"
       }}
     />
     <Stack.Screen 
-      name="selectuser"
+      name="changepasswordpage"
       options = {{
-        title: "Select user"
+        title: "Change password"
       }}
     />
     <Stack.Screen 
-      name="userpage"
+      name="selectuser"
       options = {{
-        title: "User page"
+        title: "Select user"
       }}
     />
   </Stack>;

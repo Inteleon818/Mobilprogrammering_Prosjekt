@@ -1,15 +1,33 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+/*Claude chat som forklarer hvordan man navigerer mellom sider gjennom Pressable: https://claude.ai/share/b9bcfa63-8997-4e41-b591-bdabbbd7a6f0*/
+
+import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { useForm } from "@tanstack/react-form";
 import type { User } from "@/types/user";
+import { useState } from "react";
+import { useRouter } from "expo-router";
+import { styles } from "@/styles/styles";
 
 export default function CreateUserPage() {
+  const router = useRouter();
+
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   const form = useForm({
     defaultValues: {
+      id: (Math.floor(Math.random() * 1000000)).toString(),
       username: "",
       password: "",
     },
     onSubmit: async ({ value }) => {
       console.log("User data: ", value);
+      router.replace({
+        pathname: "/userpage",
+        params: {
+          id: value.id,
+          username: value.username,
+        }
+      });
     }
   })
 
@@ -18,8 +36,8 @@ export default function CreateUserPage() {
       <form.Field
         name="username"
         children={(field) => (
-          <View style={styles.field}>
-            <Text style={styles.fieldTitle}>Username:</Text>
+          <View>
+            <Text style={styles.mainText}>Username:</Text>
             <TextInput
               style={styles.fieldInput}
               value={field.state.value}
@@ -32,8 +50,8 @@ export default function CreateUserPage() {
       <form.Field
         name="password"
         children={(field) => (
-          <View style={styles.field}>
-            <Text style={styles.fieldTitle}>Password:</Text>
+          <View>
+            <Text style={styles.mainText}>Password:</Text>
             <TextInput
               style={styles.fieldInput}
               value={field.state.value}
@@ -43,29 +61,11 @@ export default function CreateUserPage() {
           </View>
         )}
       />
+
+      <Pressable onPress={() => form.handleSubmit()}>
+        <Text style={styles.fieldInput} >Create account</Text>
+      </Pressable>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: 50,
-  },
-  field: {
-    marginBottom: 20,
-  },
-  fieldTitle: {
-     fontWeight: "bold",
-     fontSize: 30,
-  },
-  fieldInput: {
-    fontSize: 30,
-    borderStyle: "solid",
-    borderColor: "#000000",
-    borderWidth: 1,
-    borderRadius: 10,
-  }
-})

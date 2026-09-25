@@ -1,9 +1,16 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { Link, useLocalSearchParams } from "expo-router";
+import { styles } from "@/styles/styles";
 
 export default function UserPage() {
+  const { username } = useLocalSearchParams();
+
   return (
-    <View>
-      <Text>User page</Text>
+    <View style={styles.container}>
+      <Text style={styles.mainText}>Hello, {username}!</Text>
+      <Link style={styles.fieldInput} href="/changepasswordpage">
+        <Text>Change password</Text>
+      </Link>
     </View>
   );
 }

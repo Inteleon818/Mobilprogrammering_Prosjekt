@@ -8,8 +8,8 @@ export const UserSchema = z.object({
   id: z.string().min(1, {message: "Id: is required "}),
   username: z.string().min(1, {message: "Username: is required "}),
   password: z.string().min(1, {message: "Password: is required "}),
-  gameList: z.array(GameSchema),
-  userSettings: UserSettingsSchema,
+  gameList: z.array(GameSchema).optional(),
+  userSettings: UserSettingsSchema.optional(),
 })
 
 export type User = z.infer<typeof UserSchema>;
